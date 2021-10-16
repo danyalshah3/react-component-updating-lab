@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Timer extends Component {
+class Timer extends PureComponent {
   constructor() {
     super();
     this.timer = React.createRef();
@@ -11,6 +11,20 @@ class Timer extends Component {
   }
 
   //Your code here
+  componentDidUpdate() {
+
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+  }
+
+  // shouldComponentUpdate() {
+
+  // }
 
   componentDidMount() {
     this.interval = setInterval(
@@ -34,6 +48,11 @@ class Timer extends Component {
       </section>
     );
   }
+
+
+  // shouldComponentUpdate() {
+
+  //  }
 
   clockTick = () => {
     this.setState(prevState => ({
